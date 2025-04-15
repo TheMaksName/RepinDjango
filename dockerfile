@@ -1,24 +1,20 @@
+# Этап сборки
+FROM python:3.12-slim as builder
+
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --user -r requirements.txt
+
+# Этап запуска
 FROM python:3.12-slim
 
-RUN mkdir -p /app
 WORKDIR /app
-
-# Устанавливаем зависимости PostgreSQL
-RUN apt-get update && apt-get install -y \
-    libpq-dev \
-    gcc \
-    && rm -rf /var/lib/apt/lists/*
-
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-
+COPY --from=builder /root/.local /root/.local
 COPY . .
-CMD sh -c "\
 
-  echo '--- Применяем миграции ---' && \
-  python manage.py migrate && \
-  echo '--- Собираем статику ---' && \
-  python manage.py collectstatic --noinput && \
-  echo '--- Запускаем Gunicorn ---' && \
-  gunicorn --bind 0.0.0.0:8000 project.wsgi:application"
+ENV PATH=/root/.local/bin:$PATH \
+    PYTHONUNBUFFERED=1
+
+RUN python manage.py collectstatic --noinput
+
+CMD ["gunicorn", "registration.wsgi:application", "--bind", "0.0.0.0:8000"]
