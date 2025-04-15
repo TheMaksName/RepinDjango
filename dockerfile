@@ -17,6 +17,6 @@ VOLUME /data
 
 # Сборка статики и запуск
 # Сборка статики
-RUN python /app/registration/manage.py collectstatic --noinput
+#RUN python /app/registration/manage.py collectstatic --noinput
 
 CMD ["gunicorn", "--pythonpath", "registration", "registration.wsgi:application", "--bind", "0.0.0.0:8000"]
