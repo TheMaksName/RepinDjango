@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-&i1z@+ur)aj*hg+50_#w@=n7v)!iw@&*s2+c%)n^=4zv0a-e^9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['www.samlit.net', "samlit.net"]
 
