@@ -27,6 +27,17 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['www.samlit.net', "samlit.net"]
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+CSRF_COOCIE_SECURE = True
+
+CSRF_TRUSTED_ORIGINS = ['https://www.samli.net', 'https://samlit.net']
+
+FILE_UPLOAD_MAX_MEMORY_SIZE = 104876
+
+DATA_UPLOAD_MAX_MEMORY_SIZE = 104876
+
+
 
 # Application definition
 
