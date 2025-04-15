@@ -41,7 +41,7 @@ def registration_true(request):
 
         # Обработка команды
         team_option = request.POST.get('team', '').strip()
-        custom_team = request.POST.get('custom_team', '').strip()
+        custom_team = request.POST.get('custom_team')
 
         if team_option == 'custom':
             if not custom_team:
