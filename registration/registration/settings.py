@@ -23,24 +23,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-&i1z@+ur)aj*hg+50_#w@=n7v)!iw@&*s2+c%)n^=4zv0a-e^9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-ALLOWED_HOSTS = ['www.samlit.net', "samlit.net"]
-
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-CSRF_COOCIE_SECURE = True
-
-CSRF_TRUSTED_ORIGINS = ['https://www.samli.net', 'https://samlit.net']
-
-FILE_UPLOAD_MAX_MEMORY_SIZE = 104876
-
-DATA_UPLOAD_MAX_MEMORY_SIZE = 104876
+DEBUG = True
 
 
+#Для продакшена на сервер
+# ALLOWED_HOSTS = ['www.samlit.net', "samlit.net"]
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# CSRF_COOCIE_SECURE = True
+# CSRF_TRUSTED_ORIGINS = ['https://www.samli.net', 'https://samlit.net']
+# FILE_UPLOAD_MAX_MEMORY_SIZE = 104876
+# DATA_UPLOAD_MAX_MEMORY_SIZE = 104876
+
+
+ALLOWED_HOSTS = []
 
 # Application definition
-
 INSTALLED_APPS = [
     'reg',
     'django.contrib.admin',
@@ -147,10 +144,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/app/registration/staticfiles'  # Папка, куда собирается статика
-STATICFILES_DIRS = [
-     '/app/registration/reg/static',  # Папка с твоими статическими файлами
-]
+#STATIC_ROOT = '/app/registration/staticfiles'  # Папка, куда собирается статика
+# STATICFILES_DIRS = [
+#      '/app/registration/reg/static',  # Папка с твоими статическими файлами
+# ]
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # STATIC_DIRS = os.path.join(BASE_DIR, 'static')
