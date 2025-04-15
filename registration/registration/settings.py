@@ -25,8 +25,8 @@ SECRET_KEY = 'django-insecure-&i1z@+ur)aj*hg+50_#w@=n7v)!iw@&*s2+c%)n^=4zv0a-e^9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-# ALLOWED_HOSTS = ['www.samlit.net', "samlit.net"]
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.samlit.net', "samlit.net"]
+
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 CSRF_COOCIE_SECURE = True
