@@ -14,7 +14,8 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY entrypoint.sh .
-RUN chmod +x /app/entrypoint.sh  # Явно указываем полный путь
+RUN chmod 755 /app/entrypoint.sh && \
+    dos2unix /app/entrypoint.sh
 
 COPY . .
 
