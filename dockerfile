@@ -18,4 +18,4 @@ VOLUME /data
 # Сборка статики и запуск
 # RUN python manage.py collectstatic --noinput
 
-CMD ["gunicorn", "registration.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD ["gunicorn", "reg.wsgi:application", "--bind", "0.0.0.0:8000"]
