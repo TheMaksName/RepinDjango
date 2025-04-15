@@ -15,7 +15,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY entrypoint.sh .
 RUN chmod 755 /app/entrypoint.sh && \
-    dos2unix /app/entrypoint.sh
+    sed -i 's/\r$//' /app/entrypoint.sh  # Аналог dos2unix
 
 COPY . .
 
