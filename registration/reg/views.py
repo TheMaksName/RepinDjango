@@ -53,7 +53,7 @@ def registration_true(request):
             team_name = team_option
 
         # Проверка файла согласия
-        consent_file = request.FILES.get('consent_file')
+        consent_file = request.FILES.get('document')
         if not consent_file:
             errors['consent_file'] = "Необходимо загрузить файл согласия"
 
