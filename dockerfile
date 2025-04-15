@@ -19,11 +19,7 @@ RUN chmod 755 /app/entrypoint.sh && \
 
 COPY . .
 CMD sh -c "\
-  echo '--- Проверка подключения к PostgreSQL ---' && \
-  until pg_isready -h $POSTGRES_HOST -p $POSTGRES_PORT; do \
-    echo 'Ждём PostgreSQL...'; \
-    sleep 2; \
-  done && \
+
   echo '--- Применяем миграции ---' && \
   python manage.py migrate && \
   echo '--- Собираем статику ---' && \
