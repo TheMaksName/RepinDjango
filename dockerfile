@@ -18,7 +18,15 @@ RUN chmod 755 /app/entrypoint.sh && \
     sed -i 's/\r$//' /app/entrypoint.sh  # Аналог dos2unix
 
 COPY . .
-
-
-# Точка входа
-ENTRYPOINT ["./entrypoint.sh"]
+CMD sh -c "\
+  echo '--- Проверка подключения к PostgreSQL ---' && \
+  until pg_isready -h $DB_HOST -p $DB_PORT; do \
+    echo 'Ждём PostgreSQL...'; \
+    sleep 2; \
+  done && \
+  echo '--- Применяем миграции ---' && \
+  python manage.py migrate && \
+  echo '--- Собираем статику ---' && \
+  python manage.py collectstatic --noinput && \
+  echo '--- Запускаем Gunicorn ---' && \
+  gunicorn --bind 0.0.0.0:8000 project.wsgi:application"
