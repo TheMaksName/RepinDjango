@@ -258,9 +258,9 @@
                                     <div class="input-container">
                                         <select class="form-control" id="team" name="team">
                                             <option value="">Выберите команду или введите новую</option>
-                                            <option value="Команда Альфа">Команда Альфа</option>
-                                            <option value="Команда Бета">Команда Бета</option>
-                                            <option value="Команда Гамма">Команда Гамма</option>
+                                            {% for team in teams %}
+                                                <option value='{{ team.name }}'>{{ team.name }}</option>
+                                            {% endfor %}
                                             <option value="custom">Другая команда</option>
                                         </select>
                                         <input type="text" class="form-control mt-2" id="custom_team" name="custom_team" placeholder="Введите название команды" style="display: none;">
