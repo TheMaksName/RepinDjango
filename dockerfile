@@ -1,29 +1,19 @@
-FROM python:3.12-slim as builder
+FROM python:3.12-slim
 
-# Устанавливаем системные зависимости
+WORKDIR /app
+
 RUN apt-get update && apt-get install -y \
-    libpq-dev \
     gcc \
+    libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /app
-COPY requirements.txt .
+COPY requirements.txt /app/
 
-# Устанавливаем зависимости глобально
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Копируем остальные файлы
-COPY . .
+COPY . /app/
 
-# Финальный этап
-FROM python:3.12-slim
-WORKDIR /app
-COPY --from=builder /usr/local/lib/python3.12/site-packages /usr/local/lib/python3.12/site-packages
-COPY --from=builder /app .
-
-# Настройка окружения
-ENV PYTHONUNBUFFERED=1 \
-    DJANGO_SETTINGS_MODULE=registration.settings
+VOLUME /data
 
 # Сборка статики и запуск
 RUN python manage.py collectstatic --noinput
